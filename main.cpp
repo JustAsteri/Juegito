@@ -4,6 +4,15 @@
 #include <ctime>
 #include <cmath>
 
+/*
+  Add Restrictions to UserInput
+  Add difficulties
+    Easy: 1 - 10
+    Medium: 1 - 25
+    Hard: 1 - 50
+  Add hint to the user in the last life
+*/
+
 using namespace std;
 
 int main()
