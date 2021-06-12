@@ -31,7 +31,7 @@ int main()
   cout << endl;
   //Limit of numbers to choose
   limiteNumero = 10;
-  cout << "Juego de Adivina el numero secreto ver. Alpha 0.3" << endl;
+  cout << "Juego de Adivina el numero secreto ver. Alpha 0.31" << endl;
   cout << "Elige un numero entre el 1 y el " << limiteNumero << endl;
   cout << endl;
   cout << "            __" << endl;
@@ -121,7 +121,8 @@ int main()
       //system("Pause");
     }
 
-    if (vidas == 1)
+    //
+    if (vidas == 1 && victoria == false)
     {
       puntuaciontotal = (puntuaciontotal - puntuacionSuma) + (puntuaciontotal / 2);
 
@@ -132,11 +133,16 @@ int main()
       cout << "+--------------------------+" << endl;
       cout << "| " << "El numero secreto era: "<<numero_al_azar <<" |" << endl;
       cout << "+--------------------------+" << endl;
+    }
 
+    if ((vidas == 1 && victoria == false) || victoria == true)
+    {
+      cout << endl;
       cout << "╔═╗╔═╗╔╦╗╔═╗  ╔═╗╦  ╦╔═╗╦═╗" << endl;
       cout << "║ ╦╠═╣║║║║╣   ║ ║╚╗╔╝║╣ ╠╦╝" << endl;
       cout << "╚═╝╩ ╩╩ ╩╚═╝  ╚═╝ ╚╝ ╚═╝╩╚═" << endl;
     }
+    
   }
   //system("Color 60");
 
