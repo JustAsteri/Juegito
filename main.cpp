@@ -5,7 +5,7 @@
 #include <cmath>
 
 /*
-  Add Restrictions to UserInput
+  Add Restrictions to UserInput - Complete
 
   Add difficulties
     Easy: 1 - 10
@@ -29,8 +29,9 @@ int main()
   numero_al_azar = 5;
 
   cout << endl;
+  //Limit of numbers to choose
   limiteNumero = 10;
-  cout << "Juego de Adivina el numero secreto ver. Alpha 0.21" << endl;
+  cout << "Juego de Adivina el numero secreto ver. Alpha 0.3" << endl;
   cout << "Elige un numero entre el 1 y el " << limiteNumero << endl;
   cout << endl;
   cout << "            __" << endl;
@@ -58,9 +59,19 @@ int main()
     cout << "| " << "tienes "<<vidas<<" oportunidad(es)" <<" |" << endl;
     cout << "+--------------------------+" << endl;
     cout << "--------> ";
-
+    
+    //Number of the user in the first try
     cin>>numero_del_usuario;
 
+    //Bucle for incorrect user data inputs
+    while (numero_del_usuario < 1 || numero_del_usuario > limiteNumero)
+    {
+      cout << "Ingresa un valor entre el 1 y el 10" << endl;
+      cout << "--------> ";
+      cin>>numero_del_usuario;
+    }
+    
+    //Conditions for correct user data inputs
     if(numero_al_azar == numero_del_usuario && vidas == 3)
     {
         //system("Color 27");
@@ -76,11 +87,13 @@ int main()
         //system("Pause");
         victoria = true;
     }
+
     else if(numero_al_azar == numero_del_usuario && vidas != 3)
     {
         //system("Color 27");
         cout << endl;
         cout << endl;
+        //Calculate Puntuation if the user wins
         puntuaciontotal = (puntuaciontotal - puntuacionSuma) * 2;
         cout << "*************************************" <<endl;
         cout << "| Felicidades, adivinaste el numero |" << endl;
@@ -93,10 +106,11 @@ int main()
         victoria = true;
     }
     
-    if (numero_al_azar != numero_del_usuario && vidas != 3)
+    else if (numero_al_azar != numero_del_usuario)
     {
       //system("Color 47");
       cout << endl;
+      //Calculate puntuation if user fails their try
       puntuacion = abs(numero_del_usuario - numero_al_azar) * 10;
       puntuacionSuma += puntuacion;
       if (vidas > 1)
@@ -106,8 +120,8 @@ int main()
       cout << endl;
       //system("Pause");
     }
-    
-    if (vidas == 0)
+
+    if (vidas == 1)
     {
       puntuaciontotal = (puntuaciontotal - puntuacionSuma) + (puntuaciontotal / 2);
 
