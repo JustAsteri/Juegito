@@ -1,8 +1,8 @@
 #include <iostream>
 #include <cstdlib>
-//#include <windows.h>
 #include <ctime>
 #include <cmath>
+#include <stdlib.h>
 
 /*
   Add Restrictions to UserInput - Complete
@@ -19,6 +19,11 @@
 
 using namespace std;
 
+void Clear()
+{
+    cout << "\x1B[2J\x1B[H";
+}
+
 int main()
 {
   int repetirJuego = 1;
@@ -26,7 +31,7 @@ int main()
   //Loop to reapeat the game if the user wants
   while (repetirJuego == 1)
   {
-    int limiteNumero, numero_al_azar = 0, numero_del_usuario = 0, puntuacionSuma = 0, puntuacion = 0, vidas = 0;
+    int numero_al_azar = 0, numero_del_usuario = 0, puntuacionSuma = 0, puntuacion = 0, vidas = 0;
     int rangoAzar = 10;
     int puntuaciontotal = rangoAzar * 10;
     bool victoria = false;
@@ -37,9 +42,7 @@ int main()
 
     cout << endl;
     //Limit of numbers to choose
-    limiteNumero = 10;
-    cout << "Juego de Adivina el numero secreto ver. Alpha 0.4" << endl;
-    cout << "Elige un numero entre el 1 y el " << limiteNumero << endl;
+    cout << "Juego de Adivina el numero secreto ver. Alpha 4.1" << endl;
     cout << endl;
     cout << "            __" << endl;
     cout << "           (  )" << endl;
@@ -53,6 +56,8 @@ int main()
     cout << "******************************************" <<endl;
     cout << "|        Comienzas con 150 puntos        |" << endl;
     cout << "******************************************" <<endl;
+    cout << endl;
+    cout << "Elige un numero entre el 1 y el " << rangoAzar << endl;
     cout << endl;
 
     for(
@@ -71,7 +76,7 @@ int main()
       cin>>numero_del_usuario;
 
       //Bucle for incorrect user data inputs
-      while (numero_del_usuario < 1 || numero_del_usuario > limiteNumero)
+      while (numero_del_usuario < 1 || numero_del_usuario > rangoAzar)
       {
         cout << "Ingresa un valor entre el 1 y el 10" << endl;
         cout << "--------> ";
@@ -162,6 +167,7 @@ int main()
       cout << "--------> ";
       cin >> repetirJuego;
     }
+    system("clear");
   }
   cout << endl;
   //system("Color 60");
