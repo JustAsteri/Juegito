@@ -14,7 +14,7 @@
 
   Add hint to the user in the last life
 
-  Repeat the game if the user wants - Completed
+  Repeat the game if the user wants - Completed 
 */
 
 using namespace std;
