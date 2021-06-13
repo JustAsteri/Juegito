@@ -32,7 +32,7 @@ int main()
   int dificultad = 0;
   int repetirJuego = 1;
   cout << endl;
-  cout << "Juego de Adivina el numero secreto ver. Alpha 5" << endl;
+  cout << "Juego de Adivina el numero secreto ver. Alpha 5.1" << endl;
   cout << endl;
   cout << "            __" << endl;
   cout << "           (  )" << endl;
@@ -66,8 +66,7 @@ int main()
       bool victoria = false;
 
       srand(time(0));
-      //numero_al_azar = rand()% rango + 1;
-      numero_al_azar = 1;
+      numero_al_azar = rand()% rangoAzar + 1;
 
       cout << endl;
       //Limit of numbers to choose
@@ -228,8 +227,7 @@ int main()
       bool victoria = false;
 
       srand(time(0));
-      //numero_al_azar = rand()% rango + 1;
-      numero_al_azar = 1;
+      numero_al_azar = rand()% rangoAzar + 1;
 
       cout << endl;
       //Limit of numbers to choose
@@ -390,8 +388,7 @@ int main()
       bool victoria = false;
 
       srand(time(0));
-      //numero_al_azar = rand()% rango + 1;
-      numero_al_azar = 1;
+      numero_al_azar = rand()% rangoAzar + 1;
 
       cout << endl;
       //Limit of numbers to choose
