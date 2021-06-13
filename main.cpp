@@ -4,25 +4,8 @@
 #include <cmath>
 #include <stdlib.h>
 
-/*
-  Add Restrictions to UserInput - Completed
-
-  Add difficulties - completed
-    Easy: 1 - 10
-    Medium: 1 - 25
-    Hard: 1 - 50
-
-  Add hint to the user in the last life (just in Medium and Hard) - completed
-    Medium:
-      Frio = Estas cerca por: 12 numeros;
-      Tibio = Estas cerca por: 6 numeros;
-      Caliente = Estas cerca por: 3 numeros;
-    Hard:
-      Frio = Estas cerca por: 25 numeros;
-      Tibio = Estas cerca por: 12 numeros;
-      Caliente = Estas cerca por: 6 numeros;
-
-  Repeat the game if the user wants - Completed 
+/*  
+  Error cuando ponen tipos de datos diferentes en cualquier condicion
 */
 
 using namespace std;
@@ -32,8 +15,11 @@ int main()
   int dificultad = 0;
   int repetirJuego = 1;
   cout << endl;
-  cout << "Juego de Adivina el numero secreto ver. Alpha 5.1" << endl;
+  cout << "Juego de Adivina el numero secreto ver. Alpha 5.2" << endl;
   cout << endl;
+  cout << "Instrucciones: El usuario (usted) debe intentar adivinar el numero que estoy pensando" << endl;
+  cout << endl;
+
   cout << "            __" << endl;
   cout << "           (  )" << endl;
   cout << "            ||" << endl;
@@ -46,7 +32,7 @@ int main()
   //Loop to reapeat the game if the user wants
   while (repetirJuego == 1)
   {
-    cout << "Elija la dificultad del juego\n Presione 1 para dificultad: Facil (numeros entre 1 y 10) \n Presione 2 para dificultad: media (numeros entre 1 y 25) \n Presione 3 para dificultad: dificil (numeros entre 1 y 50)" << endl;
+    cout << "Elija la dificultad del juego\n Presione 1 para dificultad Facil (numeros entre 1 y 10) \n Presione 2 para dificultad Media (numeros entre 1 y 25) \n Presione 3 para dificultad Dificil (numeros entre 1 y 50)" << endl;
     cout << endl;
     cout << "NOTA: Para las dificultades media y dificil, habra una pista del tipo frio, tibio y caliente" << endl;
     cout << "--------> ";
@@ -63,17 +49,19 @@ int main()
       //***********************************************
       int numero_al_azar = 0, numero_del_usuario = 0, puntuacionSuma = 0, puntuacion = 0, vidas = 0;
       int puntuaciontotal = (rangoAzar - 1) * 30;
+      int puntuacionMaxima = puntuaciontotal;
       bool victoria = false;
 
       srand(time(0));
-      numero_al_azar = rand()% rangoAzar + 1;
+      //numero_al_azar = rand()% rangoAzar + 1;
+      numero_al_azar = 5;
 
       cout << endl;
       //Limit of numbers to choose
       cout << endl;
-      cout << "******************************************" <<endl;
-      cout << "|        Comienzas con "<< puntuaciontotal <<" puntos        |" << endl;
-      cout << "******************************************" <<endl;
+      cout << "*******************************************" <<endl;
+      cout << "|        Comienzas con "<< puntuacionMaxima <<" puntos         |" << endl;
+      cout << "*******************************************" <<endl;
       cout << endl;
       cout << "Elige un numero entre el 1 y el " << rangoAzar << endl;
       cout << endl;
@@ -96,7 +84,7 @@ int main()
         //Bucle for incorrect user data inputs
         while (numero_del_usuario < 1 || numero_del_usuario > rangoAzar)
         {
-          cout << "Ingresa un valor entre el 1 y el 10" << endl;
+          cout << "Ingresa un valor entre el 1 y el " << rangoAzar << endl;
           cout << "--------> ";
           cin>>numero_del_usuario;
         }
@@ -108,7 +96,7 @@ int main()
             cout << endl;
             cout << endl;
             cout << "**************************************************" <<endl;
-            cout << "| Felicidades, adivinaste el numero A LA PRIMERA |" << endl;
+            cout << "| FELICIDADES, adivinaste el numero A LA PRIMERA |" << endl;
             cout << "**************************************************" <<endl;
             cout << endl;
             cout << "+------------------------+" << endl;
@@ -129,12 +117,16 @@ int main()
             puntuaciontotal = (puntuaciontotal - puntuacionSuma);
             //Calculate Puntuation if the user wins
             cout << "*************************************" <<endl;
-            cout << "| Felicidades, adivinaste el numero |" << endl;
+            cout << "| FELICIDADES, adivinaste el numero |" << endl;
             cout << "*************************************" <<endl;
             cout << endl;
-            cout << "+-----------------------+" << endl;
-            cout << "| " << "Puntuacion Final: " << puntuaciontotal << " |" << endl;
-            cout << "+-----------------------+" << endl;
+            cout << "+-------------------------------------------------+" << endl;
+            cout << "| " << "Puntuacion Final = " << puntuaciontotal <<"                          |" << endl;
+            cout << "| " << "Puntuacion Maxima = " << puntuacionMaxima << "                         |" << endl;
+            cout << "|                                                 |" << endl;
+            cout << "| " << "Puntos Faltantes para Puntuacion Maxima = " << puntuacionMaxima - puntuaciontotal << "    |" << endl;
+            cout << "+-------------------------------------------------+" << endl;
+            cout << endl;
             //system("Pause");
             victoria = true;
         }
@@ -148,7 +140,7 @@ int main()
           puntuacionSuma += puntuacion;
           if (vidas > 1)
           {
-            cout << "No adivinaste, intenta otra vez con otro numero" << endl;
+            cout << "No adivinaste, intenta con otro numero" << endl;
             //hints only for medium and hard difficulties
             int pista = abs(numero_del_usuario - numero_al_azar);
             if (dificultad == 2 || dificultad == 3)
@@ -165,7 +157,7 @@ int main()
               }
               else if (pista >= caliente && pista < tibio)
               {
-                cout << "AY!!!, TE ESTAS QUEMANDOOOO!!!" << endl;
+                cout << "AAAY!!!, TE ESTAS QUEMANDOOOO!!!" << endl;
                 cout << endl;
               }
             }
@@ -178,14 +170,19 @@ int main()
         if (vidas == 1 && victoria == false)
         {
           puntuaciontotal = (puntuaciontotal - puntuacionSuma);
-
-          cout << "+----------------------+" << endl;
-          cout << "| " << "Puntuacion Final: " << puntuaciontotal <<" |" << endl;
-          cout << "+----------------------+" << endl;
-            
-          cout << "+--------------------------+" << endl;
-          cout << "| " << "El numero secreto era: "<<numero_al_azar <<" |" << endl;
-          cout << "+--------------------------+" << endl;
+          cout << "Lastima, no adivinaste el numero" << endl;
+          cout << "+-------------------------------------------------+" << endl;
+          cout << "| " << "Puntuacion Final = " << puntuaciontotal <<"                          |" << endl;
+          cout << "| " << "Puntuacion Maxima = " << puntuacionMaxima << "                         |" << endl;
+          cout << "|                                                 |" << endl;
+          cout << "| " << "Puntos Faltantes para Puntuacion Maxima = " << puntuacionMaxima - puntuaciontotal << "    |" << endl;
+          cout << "+-------------------------------------------------+" << endl;
+          cout << endl;
+          cout << "***************************************************" <<endl;
+          cout << endl;
+          cout << "+----------------------------+" << endl;
+          cout << "| " << "El numero secreto era: "<<numero_al_azar <<"   |" << endl;
+          cout << "+----------------------------+" << endl;
         }
 
         if ((vidas == 1 && victoria == false) || victoria == true)
