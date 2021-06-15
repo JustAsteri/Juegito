@@ -6,18 +6,18 @@
 //#include <windows.h>
 
 /*  
-  Error cuando ponen tipos de datos diferentes en cualquier condicion
+  Error cuando ponen tipos de datos diferentes en condiciones de los intentos de numeros
 */
 
 using namespace std;
 
 int main()
 {
-  int dificultad = 0;
+  string dificultad;
   string repetirJuego;
   bool validar;
   cout << endl;
-  cout << "Juego de Adivina el numero secreto ver. Alpha 5.2" << endl;
+  cout << "Juego de Adivina el numero secreto ver. Alpha 5.5" << endl;
   cout << endl;
   cout << "Instrucciones: El usuario (usted) debe intentar adivinar el numero que estoy pensando" << endl;
   cout << endl;
@@ -40,7 +40,18 @@ int main()
     cout << "--------> ";
     cin >> dificultad;
 
-    if (dificultad == 1)
+    while (dificultad != "1" && dificultad != "2" && dificultad != "3")
+    {
+      cout << endl;
+      cout << "Ingresa un valor valido" << endl;
+      cout << endl;
+      cout << "Elija la dificultad del juego\n Presione 1 para dificultad Facil (numeros entre 1 y 10) \n Presione 2 para dificultad Media (numeros entre 1 y 25) \n Presione 3 para dificultad Dificil (numeros entre 1 y 50)" << endl;
+      cout << endl;
+      cout << "NOTA: Para las dificultades media y dificil, habra una pista del tipo frio, tibio y caliente" << endl;
+      cout << "--------> ";
+      cin >> dificultad;
+    }
+    if (dificultad == "1")
     {
       int rangoAzar = 10;
       //***********************************************
@@ -144,7 +155,7 @@ int main()
             cout << "No adivinaste, intenta con otro numero" << endl;
             //hints only for medium and hard difficulties
             int pista = abs(numero_del_usuario - numero_al_azar);
-            if (dificultad == 2 || dificultad == 3)
+            if (dificultad == "2" || dificultad == "3")
             {
               if (pista >= frio)
               {
@@ -205,5 +216,8 @@ int main()
     }
   }
   while (repetirJuego == "1");
+  cout << endl;
+  cout << "Gracias por jugar" << endl;
+  cout << endl;
   return 0;
 }
